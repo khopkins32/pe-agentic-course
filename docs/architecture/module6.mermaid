@@ -2,7 +2,7 @@
 title: Module 6 — Two-Phase Conversational Observability Agent
 ---
 flowchart TD
-    Q([Natural-language query\ne.g. "We are getting paged..."]) --> P1
+    Q([Natural-language query\ne.g. 'We are getting paged...']) --> P1
 
     subgraph phase1 [Phase 1 — Route  max_tokens=64]
         P1[phase1_route] --> C1[(Claude API\nROUTING_SYSTEM_PROMPT)]
