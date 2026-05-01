@@ -96,7 +96,10 @@ ANTHROPIC_API_KEY=sk-... python module4/diagnose.py
 
 Actions → "Module 4 — Broken Pipeline (Demo)" → Run workflow. Two jobs appear: `run-broken-app` (which intentionally fails) and `triage-agent` (which always runs regardless). The triage agent injects the failure log into `sample_data.json` and runs `triage_agent.py` against it — giving you the structured diagnosis alongside the raw failure log.
 
-**Key Takeaway:** `confidence: HIGH` here because NameErrors are deterministic — the log proves exactly what went wrong, line by line. Compare this with the exercise below.
+**Key Takeaway:**
+
+- `confidence: HIGH` here because NameErrors are deterministic — the log proves exactly what went wrong, line by line.
+- Compare this with the exercise below to see how confidence changes when root cause is inferred rather than proven.
 
 ---
 
@@ -132,7 +135,10 @@ Also review `sample_migration_failure.json` — a second scenario (33 integratio
 
 **Why `confidence: MEDIUM`?** The agent sees the lock holder in the logs but cannot verify the lock was never released or confirm the prior deploy's state. It is inferring root cause from circumstantial evidence — not observing a deterministic error.
 
-**Key Takeaway:** `confidence: MEDIUM` + `escalate: true` is the correct and honest answer. An agent that returns `HIGH` confidence on infrastructure state inference is more dangerous than one that escalates.
+**Key Takeaway:**
+
+- `confidence: MEDIUM` + `escalate: true` is the correct and honest answer when inferring infrastructure state.
+- An agent that returns `HIGH` confidence on infrastructure state inference is more dangerous than one that escalates.
 
 ---
 

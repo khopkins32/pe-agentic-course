@@ -67,7 +67,11 @@ python module2/triage_agent.py --mock
 ANTHROPIC_API_KEY=sk-... python module2/triage_agent.py
 ```
 
-**Key Takeaway:** Compare the output schema in the exercise (`triage_agent.py`) against the reference solution (`solutions/solution.py`). The solution reorganises the same logic into five explicit, independently testable steps — `step1_write_prompt()`, `step2_call_api()`, `step3_parse_json()`, `step4_execute_action()`, `step5_verify_result()`. Both produce a working agent; the five-step version makes unit testing trivial because each step can be tested in isolation without touching the others.
+**Key Takeaway:**
+
+- Compare the output schema in the exercise (`triage_agent.py`) against the reference solution (`solutions/solution.py`).
+- The solution reorganises the same logic into five explicit, independently testable steps: `step1_write_prompt()`, `step2_call_api()`, `step3_parse_json()`, `step4_execute_action()`, `step5_verify_result()`.
+- Both produce a working agent; the five-step version makes unit testing trivial because each step can be tested in isolation without touching the others.
 
 ---
 

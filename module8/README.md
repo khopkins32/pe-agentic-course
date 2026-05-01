@@ -182,7 +182,11 @@ PLATFORM AGENT — FINAL REPORT
 
 ## Key Takeaway
 
-The student skeleton is intentional. Step 1 (INGEST) is fully implemented so you can see the exact three-line pattern before writing any code yourself. Steps 2–5 are `raise NotImplementedError` stubs — not because the code is hard, but because the pattern is simple enough that writing it four more times ingrains it. Every production platform agent you build after this course will follow the same pattern: build a context dict, call Claude with a system prompt, parse structured JSON output, pass the result to the next step. The capstone is proving you understand the pattern well enough to replicate it — not that you can write complex code. The recording deliverable exists for the same reason: a 2-minute video of a live pipeline run is something you can show in an interview to demonstrate you built something real.
+- The student skeleton is intentional. Step 1 (INGEST) is fully implemented so you can see the exact three-line pattern before writing any code yourself.
+- Steps 2–5 are `raise NotImplementedError` stubs — not because the code is hard, but because writing the pattern four more times ingrains it.
+- Every production platform agent you build after this course follows the same pattern: build a context dict, call Claude with a system prompt, parse structured JSON output, pass the result to the next step.
+- The capstone proves you understand the pattern well enough to replicate it — not that you can write complex code.
+- The recording deliverable exists for the same reason: a 2-minute video of a live pipeline run is something you can show in an interview to demonstrate you built something real.
 
 ---
 

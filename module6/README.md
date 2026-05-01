@@ -127,7 +127,10 @@ After running, compare your understanding of the implementation against `solutio
 
 ## Key Takeaway
 
-Phase 1 routing is cheap on purpose. Classifying the question first — before fetching any data — means you only pull the observability signals that are actually relevant to the question type. An incident query needs anomalies and events; a health check only needs `/health`. Without routing, the agent would over-fetch on every query and send irrelevant data to Claude, increasing token cost and degrading reasoning quality. The two-phase pattern scales: adding a new question type means adding a new route and a new data-fetch strategy — not rewriting the agent. This is the same pattern used in production AIOps systems.
+- Phase 1 routing is cheap on purpose. Classifying the question first — before fetching any data — means you only pull the observability signals relevant to the question type.
+- An incident query needs anomalies and events; a health check only needs `/health`. Without routing, the agent over-fetches on every query, increasing token cost and degrading reasoning quality.
+- The two-phase pattern scales: adding a new question type means adding a new route and a new data-fetch strategy — not rewriting the agent.
+- This is the same pattern used in production AIOps systems.
 
 ---
 

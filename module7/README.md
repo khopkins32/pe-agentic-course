@@ -147,7 +147,11 @@ If you get stuck, see `solutions/solution.py`.
 
 ## Key Takeaway
 
-**Safety First** is the non-negotiable conflict resolution rule. When the Gate Agent says APPROVE (based on a pre-deploy snapshot) and the Rollback Agent says IMMEDIATE rollback (based on live post-deploy signals), the Rollback Agent wins — always. Deployment approval is reversible; a live incident is not. The conflict detector's job is not to find a compromise: it is to implement the Safety First rule and escalate. Notice that `full_conflict` produces `resolution: SAFETY_FIRST_ESCALATE` — because the orchestrator cannot verify live infrastructure state in real time, and escalating to a human is the only safe answer when agents contradict each other on a live system.
+- **Safety First** is the non-negotiable conflict resolution rule: when agents contradict each other on a live system, escalate to a human.
+- When the Gate Agent says APPROVE (based on a pre-deploy snapshot) and the Rollback Agent says IMMEDIATE rollback (based on live post-deploy signals), the Rollback Agent wins — always.
+- Deployment approval is reversible; a live incident is not.
+- The conflict detector's job is not to find a compromise — it is to implement the Safety First rule and escalate.
+- `full_conflict` produces `resolution: SAFETY_FIRST_ESCALATE` because the orchestrator cannot verify live infrastructure state in real time.
 
 ---
 
