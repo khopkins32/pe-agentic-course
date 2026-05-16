@@ -37,8 +37,8 @@ All exercise files live in the course GitHub repository. Here is how to get to t
 If you haven't already, clone (or fork and clone) the course repository to your local machine:
 
 ```bash
-git clone https://github.com/platformengineering/agentic-ai-pe-course.git
-cd agentic-ai-pe-course
+git clone https://github.com/InternalDeveloperPlatform/pe-agentic-course.git
+cd pe-agentic-course
 ```
 
 **Step 2 — Navigate to the Module 1 folder**
