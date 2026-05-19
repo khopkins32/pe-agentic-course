@@ -52,7 +52,11 @@ MOCK_RESPONSE = {
 #
 # Hint: be explicit about the output format. Claude follows precise instructions well.
 # Check solutions/solution.py only after you have made your own attempt.
-SYSTEM_PROMPT = ""  # Replace this empty string with your prompt
+SYSTEM_PROMPT = (
+    "You are a platform engineering assistant. "
+    "Analyse the log snippet and return ONLY valid JSON with keys: "
+    "summary (string), likely_cause (string), next_step (string), confidence (string)."
+)  # Replace this empty string with your prompt
 
 # ── Sample log (embedded so the script is self-contained) ─────────────────────
 SAMPLE_LOG = (Path(__file__).parent / "sample_log.txt").read_text()
