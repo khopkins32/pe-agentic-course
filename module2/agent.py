@@ -181,9 +181,6 @@ def run_agent() -> dict:
         execute_action(result)
         # Step 5  of Agentic Loop
         success = verify_result(result)
-        raise NotImplementedError(
-            "Complete run_agent() — call ask() with SYSTEM_PROMPT and the log content."
-        )
 
     print(json.dumps(result, indent=2))
     save_json(result, module=2)
