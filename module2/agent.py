@@ -155,32 +155,28 @@ def load_sample() -> str:
 
 def run_agent() -> dict:
     context = load_sample()
-
-    if MOCK_MODE:
-        print("[MOCK MODE] Skipping Claude API — returning pre-defined response.")
-        print("[MOCK MODE] Set ANTHROPIC_API_KEY and remove --mock to call the real API.\n")
-        result = MOCK_RESPONSE
-    else:
-        # TODO: Call ask() with SYSTEM_PROMPT and the log content.
-        #
-        # ask() signature:
-        #   ask(system=..., user=..., model=..., max_tokens=...)
-        #
-        # - system: use SYSTEM_PROMPT (defined above)
-        # - user:   pass the log as  f"Context:\n{context}"
-        # - model and max_tokens: use AGENT_CONFIG["model"] and AGENT_CONFIG["max_tokens"]
-        #
-        # Assign the return value to `result`.
-        # Step 1 of Agentic Loop
-        system, user = write_prompt(context)
-        # Step 2  of Agentic Loop
-        raw_result = call_api(system, user)
-        # Step 3  of Agentic Loop
-        result = parse_json(raw_result)
-        # Step 4  of Agentic Loop
-        execute_action(result)
-        # Step 5  of Agentic Loop
-        success = verify_result(result)
+   
+    # TODO: Call ask() with SYSTEM_PROMPT and the log content.
+    #
+    # ask() signature:
+    #   ask(system=..., user=..., model=..., max_tokens=...)
+    #
+    # - system: use SYSTEM_PROMPT (defined above)
+    # - user:   pass the log as  f"Context:\n{context}"
+    # - model and max_tokens: use AGENT_CONFIG["model"] and AGENT_CONFIG["max_tokens"]
+    #
+    # Assign the return value to `result`.
+    
+    # Step 1 of Agentic Loop
+    system, user = write_prompt(context)
+    # Step 2  of Agentic Loop
+    raw_result = call_api(system, user)
+    # Step 3  of Agentic Loop
+    result = parse_json(raw_result)
+    # Step 4  of Agentic Loop
+    execute_action(result)
+    # Step 5  of Agentic Loop
+    success = verify_result(result)
 
     print(json.dumps(result, indent=2))
     save_json(result, module=2)
