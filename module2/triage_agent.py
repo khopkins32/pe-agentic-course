@@ -170,27 +170,22 @@ def run_agent() -> dict:
     """
     log_content = load_sample()
 
-    if MOCK_MODE:
-        print("[MOCK MODE] Skipping Claude API — returning pre-defined response.")
-        print("[MOCK MODE] Set ANTHROPIC_API_KEY and remove --mock to call the real API.\n")
-        return MOCK_RESPONSE    
-    else:
-        # Step 1 of Agentic Loop
-        system, user = write_prompt(log_content)
-        # Step 2  of Agentic Loop
-        raw_result = call_api(system, user)
-        # Step 3  of Agentic Loop
-        result = parse_json(raw_result)
-        # Step 4  of Agentic Loop
-        execute_action(result)
-        # Step 5  of Agentic Loop
-        success = verify_result(result)
+    # Step 1 of Agentic Loop
+    system, user = write_prompt(log_content)
+    # Step 2  of Agentic Loop
+    raw_result = call_api(system, user)
+    # Step 3  of Agentic Loop
+    result = parse_json(raw_result)
+    # Step 4  of Agentic Loop
+    execute_action(result)
+    # Step 5  of Agentic Loop
+    success = verify_result(result)
 
-        print(json.dumps(result, indent=2))
-        save_json(result, module=2)
-        print(to_step_summary(result, title="Module 2 Agent Result"))
-        print(f"\n[VERIFY] All checks passed: {success}")
-        return result
+    print(json.dumps(result, indent=2))
+    save_json(result, module=2)
+    print(to_step_summary(result, title="Module 2 Agent Result"))
+    print(f"\n[VERIFY] All checks passed: {success}")
+    return result
 
 
 def main():
