@@ -70,22 +70,37 @@ def run_agent() -> dict:
         #
         # The loop should:
         # 1. Initialise  history = []  and  result = {}
+        history = []
+        result = {}
         # 2. Loop up to AGENT_CONFIG["max_iterations"] times:
-        #    a. Build user_msg:
-        #       - First iteration: f"Context:\n{context}"
-        #       - Later iterations: append  f"\n\nPrevious iterations:\n{json.dumps(history, indent=2)}"
-        #    b. Call ask() with SYSTEM_PROMPT, user_msg,
-        #       AGENT_CONFIG["model"], and AGENT_CONFIG["max_tokens"]
-        #    c. Print  f"\n[Iteration {i + 1}]"  and  json.dumps(result, indent=2)
-        #    d. Append result to history
-        #    e. If result.get("finished") is True, break the loop
-        # 3. After the loop, assign the final result and let the code below print/save it.
-        #
-        # Tip: run --mock first to see the expected output shape, then implement.
-        raise NotImplementedError(
-            "Implement run_agent() — build the ReAct loop. See the TODO comment above."
-        )
-
+        for i in range(AGENT_CONFIG["max_iterations"]):
+            #   a. Build user_msg:
+            #   - First iteration: f"Context:\n{context}"
+            #   - Later iterations: append  f"\n\nPrevious iterations:\n{json.dumps(history, indent=2)}"
+            if history:
+                user_msg = (
+                    f"Context:\n{context}"
+                    f"\n\nPrevious iterations:\n{json.dumps(history, indent=2)}"
+                )
+            else:
+                user_msg = f"Incident:\n{context}"
+            #    b. Call ask() with SYSTEM_PROMPT, user_msg,
+            #    AGENT_CONFIG["model"], and AGENT_CONFIG["max_tokens"]
+            result = ask(
+                system=SYSTEM_PROMPT,
+                user=user_msg,
+                model=AGENT_CONFIG["model"],
+                max_tokens=AGENT_CONFIG["max_tokens"]
+            )
+            #    c. Print  f"\n[Iteration {i + 1}]"  and  json.dumps(result, indent=2)
+            print(f"\n── Iteration {i + 1} ──────────────────────────────────────────")
+            print(json.dumps(result, indent=2))
+            #    d. Append result to history
+            history.append(result)
+            #    e. If result.get("finished") is True, break the loop
+            if result.get("finished"):
+                break
+    # 3. After the loop, assign the final result and let the code below print/save it.
     print(json.dumps(result, indent=2))
     save_json(result, module=3)
     print(to_step_summary(result, title="Module 3 Agent Result"))
