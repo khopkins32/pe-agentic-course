@@ -212,6 +212,7 @@ def detect_conflict(gate_result: dict, rollback_result: dict) -> dict:
     """
     gate_decision = gate_result.get("decision", "")
     rollback_severity = rollback_result.get("severity", "NONE")
+    
 
     # TODO: implement conflict detection logic
     if gate_decision == "APPROVE" and rollback_severity == "IMMEDIATE":
