@@ -112,10 +112,11 @@ Good catch — this was a bug in the exercise files. `hello_claude.py` has been 
 `agent.py` is intentionally pre-filled — it's the runner that GitHub Actions calls and is not the exercise file. The exercise file is `hello_claude.py` only.
 
 If you already completed Module 1 with the filled-in prompt, you've still learned the key lesson (how the API call works and how structured output is produced). To get the full exercise value, clear the `SYSTEM_PROMPT` in your fork and write your own before checking `solutions/solution.py`.
-
----
-
+--### Q: The GitHub Actio### Q: The GitHub Actions workflow fails immediately — something about pip and a missing requirements.txt
 ### Q: The GitHub Actions workflow fails immediately — something about pip and a missing requirements.txt
+ns workflow fails immediately — something about pip and a missing requirements.txt
+
+
 
 **Asked by:** Steven
 

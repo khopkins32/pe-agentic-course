@@ -387,9 +387,16 @@ def run_step_fix_or_escalate(
     # TODO: call run_step("FIX_OR_ESCALATE", FIX_OR_ESCALATE_PROMPT, context)
     result = run_step("FIX_OR_ESCALATE", FIX_OR_ESCALATE_PROMPT, context)
     # TODO: handle AUTO_FIX path — call save_fix_script() if script is present
+    confidence = diagnose.get("confidence") == "HIGH"
+    fix_possible = diagnose.get("fix_possible") == True
+    safety_escalate = conflict.get("resolution") != "SAFETY_FIRST_ESCALATE"
+    migration_involved = any("migration" in log.lower() for log in event.get("logs", []))
+
+
     if result.get("path") == "AUTO_FIX" and result.get("auto_fix_script"):
-        fix_script_path = save_fix_script(result["auto_fix_script"], pipeline_id)
-        result["fix_script_path"] = str(fix_script_path)
+        if confidence and fix_possible and safety_escalate and not migration_involved:
+            fix_script_path = save_fix_script(result["auto_fix_script"], pipeline_id)
+            result["fix_script_path"] = str(fix_script_path)
     # TODO: return the result
     return result
 
